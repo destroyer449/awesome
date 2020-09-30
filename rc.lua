@@ -70,7 +70,6 @@ local modkey1      = "Control"
 
 -- personal variables
 local browser           = "brave"
-local editor            = os.getenv("EDITOR") or "vim"
 local editorgui         = "geany"
 local filemanager       = "pcmanfm"
 local mailclient        = "mailspring"
@@ -239,8 +238,8 @@ globalkeys = my_table.join(
         {description = "cmus" , group = "terminal apps" }),
     awful.key({ modkey, altkey }, "e", function () awful.util.spawn( terminal.." -e neomutt" ) end,
         {description = "neomutt email" , group = "terminal apps" }),
-    awful.key({ modkey, altkey  }, "f", function () awful.util.spawn( terminal.." -e sh ./.config/vifm/scripts/vifmrun" ) end,
-        {description = "vifm" , group = "terminal apps" }),
+    awful.key({ modkey, altkey  }, "f", function () awful.util.spawn( "pcmanfm" ) end,
+        {description = "pcmanfm" , group = "gui apps" }),
     awful.key({ modkey, altkey  }, "i", function () awful.util.spawn( terminal.." -e irssi" ) end,
         {description = "irssi" , group = "terminal apps" }),
     awful.key({ modkey, altkey  }, "j", function () awful.util.spawn( terminal.." -e joplin" ) end,
@@ -261,12 +260,8 @@ globalkeys = my_table.join(
         {description = "youtube-viewer" , group = "terminal apps" }),
 
     -- screenshots
-    awful.key({ }, "Print", function () awful.util.spawn("scrot 'ArcoLinuxD-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'") end,
-        {description = "Scrot", group = "screenshots"}),
-    awful.key({ modkey1           }, "Print", function () awful.util.spawn( "xfce4-screenshooter" ) end,
-        {description = "Xfce screenshot", group = "screenshots"}),
-    awful.key({ modkey1, "Shift"  }, "Print", function() awful.util.spawn("gnome-screenshot -i") end,
-        {description = "Gnome screenshot", group = "screenshots"}),
+    awful.key({ }, "Print", function () awful.util.spawn("scrot 'ArchLinuxD-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'") end,
+        {description = "ScreenShot", group = "screenshots"}),
 
     -- Personal keybindings}}}
 
@@ -731,7 +726,6 @@ awful.rules.rules = {
           "Skype",
           "System-config-printer.py",
           "Sxiv",
-          "Unetbootin.elf",
           "Wpa_gui",
           "pinentry",
           "veromix",
@@ -835,3 +829,4 @@ awful.spawn.with_shell("picom --config  $HOME/.config/picom/picom.conf")
 awful.spawn.with_shell("nm-applet")
 awful.spawn.with_shell("volumeicon")
 awful.spawn.with_shell("setxkpmap -option caps:escape")
+awful.spawn.with_shell("firewalld")
